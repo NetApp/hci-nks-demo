@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static
+  labels:
+    app: static
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: static
+  template:
+    metadata:
+      labels:
+        app: static
+    spec:
+      containers:
+      - image: gcr.io/whim-nks/github.com/mwhite42/nksdemo_static:latest
+        name: static-demo
+        ports:
+        - containerPort: 80
