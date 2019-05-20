@@ -7,13 +7,14 @@ import datetime
 
 PRESENTER = os.environ.get('PRESENTER', "Unknown")
 ENV = os.environ.get('ENVIRONMENT', "unknown")
+STATIC = os.environ.get('STATIC', "35.230.1.39")
 
 
 # Handle a request mapped from the URL below and process it through the template
 @aiohttp_jinja2.template('./templates/index.jinja2')
 async def handle(request):
     now = datetime.datetime.now()
-    return {"presenter": PRESENTER, "date": now.strftime("%Y%m%d%H%M%S"), "env": ENV}
+    return {"static_host": STATIC, "presenter": PRESENTER, "date": now.strftime("%Y%m%d%H%M%S"), "env": ENV}
 
 
 app = web.Application()  # Initialize the base web application
