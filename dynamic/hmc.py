@@ -1,5 +1,5 @@
 from aiohttp import web  # Use the AIO Http Lib
-
+import socket
 import os
 import aiohttp_jinja2
 import jinja2
@@ -7,7 +7,7 @@ import datetime
 
 PRESENTER = os.environ.get('PRESENTER', "Unknown")
 ENV = os.environ.get('ENVIRONMENT', "unknown")
-STATIC = os.environ.get('STATIC', "35.230.1.39")
+STATIC = os.environ.get('STATIC', socket.gethostbyname('static'))
 
 
 # Handle a request mapped from the URL below and process it through the template
