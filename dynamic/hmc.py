@@ -30,7 +30,7 @@ STATIC = os.environ.get('STATIC', 'http://localhost:8081')
 @aiohttp_jinja2.template('./templates/index.jinja2')
 async def handle(request):
     now = datetime.datetime.now()
-    return {"static_host": STATIC, "presenter": PRESENTER, "date": now.strftime("%Y %m %d --- %H:%M:%S"), "env": ENV}
+    return {"static_host": STATIC, "presenter": PRESENTER, "date": now.strftime("%Y %m %d | %H:%M:%S"), "env": ENV}
 
 
 # Initialize the base web application, this sets up the aiohttp's web server
