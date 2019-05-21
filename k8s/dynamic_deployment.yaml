@@ -15,8 +15,15 @@ spec:
         app: dynamic
     spec:
       containers:
-      - image: gcr.io/whim-nks/github.com/mwhite42/nksdemo:latest
+      - image: gcr.io/whim-nks/github.com/netapp/hci-nks-demo:38f6283
         imagePullPolicy: Always
         name: dynamic-demo
         ports:
         - containerPort: 8080
+        env:
+        - name: PRESENTER
+          value: $USER
+        - name: ENVIRONMENT
+          value: Google Cloud Platform
+        - name: STATIC
+          value: http://35.247.86.16

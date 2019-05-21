@@ -19,3 +19,4 @@ spec:
         name: static-demo
         ports:
         - containerPort: 80
+
