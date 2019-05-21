@@ -10,7 +10,7 @@ export KUBECONFIG=<your kubeconfig file>
 ## Startup the nginx static content web server
 ~~~~
 kubectl create -f static_deployment.yaml
-kubectl create -f static-service.yaml
+kubectl create -f static_service.yaml
 ~~~~~
 
 ### Find the IP of the static service to pass it to the dynamic service
@@ -25,7 +25,7 @@ Examine the output for "EXTERNAL-IP" and make note
 Edit the dynamic_deployment.yaml file and change the "STATIC" URL to the IP from above.
 ~~~~
 kubectl create -f dynamic_deployment.yaml
-kubectl create -f dynamic-service.yaml
+kubectl create -f dynamic_service.yaml
 ~~~~
 
 
