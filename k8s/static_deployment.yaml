@@ -15,7 +15,7 @@ spec:
         app: static
     spec:
       containers:
-      - image: gcr.io/whim-nks/github.com/mwhite42/nksdemo_static:latest
+      - image: gcr.io/whim-nks/github.com/netapp/hci-nks-demo:312b291
         name: static-demo
         ports:
         - containerPort: 80
