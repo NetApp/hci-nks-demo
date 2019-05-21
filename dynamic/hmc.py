@@ -22,7 +22,7 @@ import datetime
 #  Here we are assiging several variables but also applying default values
 PRESENTER = os.environ.get('PRESENTER', "Unknown")
 ENV = os.environ.get('ENVIRONMENT', "unknown")
-STATIC = os.environ.get('STATIC', 'http://35.247.86.16:80')
+STATIC = os.environ.get('STATIC', 'http://localhost:8081')
 
 
 # Handle a request mapped from the URL below and process it through the template
@@ -30,7 +30,7 @@ STATIC = os.environ.get('STATIC', 'http://35.247.86.16:80')
 @aiohttp_jinja2.template('./templates/index.jinja2')
 async def handle(request):
     now = datetime.datetime.now()
-    return {"static_host": STATIC, "presenter": PRESENTER, "date": now.strftime("%Y %m %d %H:%M:%S"), "env": ENV}
+    return {"static_host": STATIC, "presenter": PRESENTER, "date": now.strftime("%Y %m %d --- %H:%M:%S"), "env": ENV}
 
 
 # Initialize the base web application, this sets up the aiohttp's web server
