@@ -15,7 +15,7 @@ spec:
         app: static
     spec:
       containers:
-      - image: gcr.io/nks-demo-242020/github.com/netapp/hci-nks-demo/static:a9bc395
+      - image: gcr.io/nks-demo-242020/github.com/netapp/hci-nks-demo/static:c3a3386
         name: static-demo
         ports:
         - containerPort: 80
