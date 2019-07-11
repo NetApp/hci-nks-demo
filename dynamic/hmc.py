@@ -41,6 +41,7 @@ aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader(''))
 # Add URL's the the application router. these can be GET PUSH or others as needed.
 app.router.add_get('/index.html', handle)  # Configure a URL
 app.router.add_get('/', handle)  # Configure another URL
+app.router.add_get('/demo.html', handle)  # Configure another URL
 
 # Loop and listen for connections
 web.run_app(app)
