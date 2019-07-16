@@ -20,7 +20,7 @@ import datetime
 # Microservices deployed as containers are ephemeral, they come and go quickly.
 # One option for passing configuration data to the container is via environment variables.
 #  Here we are assiging several variables but also applying default values
-PRESENTER = os.environ.get('PRESENTER', "Unknown")
+PRESENTER = os.environ.get('PRESENTER', "Don't know")
 ENV = os.environ.get('ENVIRONMENT', "unknown")
 STATIC = os.environ.get('STATIC', 'http://localhost:8081')
 
