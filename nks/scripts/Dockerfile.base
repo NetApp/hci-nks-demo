@@ -1,0 +1,53 @@
+FROM hashicorp/terraform:0.11.13
+
+RUN apk add --no-cache \
+    curl \
+    bash \
+    jq \
+    unzip \
+    python \
+    zip \
+    go \
+    make \
+    musl-dev \
+    openssl \
+    gcc \
+    ca-certificates
+
+# Install kubectl
+# Note: Latest version may be found on:
+# https://aur.archlinux.org/packages/kubectl-bin/
+ADD https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/linux/amd64/kubectl /usr/local/bin/kubectl
+
+RUN \
+    chmod +x /usr/local/bin/kubectl && \
+    mkdir ~/.kube && \
+    kubectl version --client
+
+RUN \
+    wget https://get.helm.sh/helm-v2.12.1-linux-amd64.tar.gz && \
+    tar xvzf helm-v2.12.1-linux-amd64.tar.gz && \
+    mv linux-amd64/helm /usr/local/bin/ && \
+    helm init --client-only
+
+
+ENV GOPATH="/root/go"
+ENV PATH="/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+
+RUN \
+    wget -O go.tgz https://dl.google.com/go/go1.13.src.tar.gz &&\
+    tar -C /usr/local -xzf go.tgz && \
+    cd /usr/local/go/src && \
+    ./make.bash
+
+RUN export PATH=$PATH:$GOPATH/bin
+
+RUN go get -u github.com/NetApp/terraform-provider-nks
+
+RUN cd $GOPATH/src/github.com/NetApp/terraform-provider-nks && \
+    rm go.mod go.sum && make build && \
+    mkdir -p ~/.terraform.d/plugins && \
+    mv ~/go/bin/terraform-provider-nks ~/.terraform.d/plugins
+
+CMD ["bin/bash"]
