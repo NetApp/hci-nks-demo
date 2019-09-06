@@ -50,14 +50,12 @@ if [[ "$ACTION" = 'build' || "$ACTION" = 'plan' || "$ACTION" = 'destroy' ]]; the
     # This key should have read access to all dependent module repos in main.tf
     if [[ "$DEBUG" = 'true' ]]; then 
         docker run -ti \
-            -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
-            -v $(pwd)/env/$COMPONENT/$DEPLOY_ENV:/src/env/$COMPONENT/$DEPLOY_ENV  \
+            -v $(pwd)/env/$COMPONENT/$DEPLOY_ENV:/src/env/$COMPONENT/$DEPLOY_ENV \
             --entrypoint /bin/bash \
             nks-tf:latest
     else
     # Optionally override the entrypoint to boot into an interactive shell- useful for debugging
         docker run -ti \
-            -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
             -v $(pwd)/env/$COMPONENT/$DEPLOY_ENV:/src/env/$COMPONENT/$DEPLOY_ENV \
             nks-tf:latest --$ACTION
     fi
