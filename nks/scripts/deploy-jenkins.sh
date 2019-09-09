@@ -8,4 +8,8 @@ curl -s "$NKS_API_URL/orgs/$ORG_ID/clusters/$CLUSTER_ID/solutions" \
 
 # Get LoadBalancer IP
 
+echo $(kubectl get svc jenkins-dry-recipe -n jenkins -o json | jq -r '.status.loadBalancer.ingress[0].ip'):8080
+
 # Get Default Admin Password
+
+echo $(kubectl get secret jenkins-dry-recipe -n jenkins -o json | jq '.data."jenkins-admin-password"' | base64 -d)
