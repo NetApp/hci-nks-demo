@@ -116,17 +116,13 @@ getOrgs
 mapProviderKey
 getDefaultSSHKeySet
 
-if [[ -f ~/.ssh/id_rsa ]]; then
-    case "$1" in
-        --plan) plan ;;
-        --build) build ;;
-        --destroy) destroy ;;
-        --console) console ;;
-        *) echo "$1 is not a valid action" ;;
-    esac
 
-    exec /bin/bash
-else
-    echo "No SSH keys found- cannot initialize Terraform"
-    exit 1
-fi
+case "$1" in
+    --plan) plan ;;
+    --build) build ;;
+    --destroy) destroy ;;
+    --console) console ;;
+    *) echo "$1 is not a valid action" ;;
+esac
+
+exec /bin/bash
