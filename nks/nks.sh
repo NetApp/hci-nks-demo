@@ -46,9 +46,9 @@ mapAction() {
 
 # Prepare deployment environment
 createProjectFolder() {
-    mkdir -p env/$PROVIDER/$CLUSTER_NAME
+    mkdir -p providers/$PROVIDER/$CLUSTER_NAME
 
-    cat > env/$PROVIDER/$CLUSTER_NAME/terraform.tfvars << EOF
+    cat > providers/$PROVIDER/$CLUSTER_NAME/terraform.tfvars << EOF
 # Organization
 organization_name = "$ORG_NAME"
 

@@ -1,6 +1,7 @@
 FROM sgryczan/nks-cs:latest
 
 VOLUME /root/.ssh
+ENV PORT 8080
 
 COPY scripts/docker_ssh_config /root/.ssh/config
 
@@ -14,9 +15,9 @@ ENV NKS_API_TOKEN=$nks_api_token
 ENV NKS_API_URL=$nks_api_url
 ENV COMPONENT=$component
 
-COPY ./env/$component /src/env/$component
-COPY ./modules /src/env/$component/modules
-WORKDIR /src/env/$component
+COPY ./providers/$component /src/providers/$component
+COPY ./modules /src/providers/$component/modules
+WORKDIR /src/providers/$component
 
 COPY scripts/docker-entrypoint.sh /src/
 COPY scripts/deploy-jenkins.sh /src/

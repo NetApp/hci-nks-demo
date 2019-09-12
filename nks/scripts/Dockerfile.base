@@ -41,9 +41,10 @@ RUN \
     cd /usr/local/go/src && \
     ./make.bash
 
-RUN export PATH=$PATH:$GOPATH/bin
+ENV PATH="/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$GOPATH/bin" 
 
 RUN go get -u github.com/NetApp/terraform-provider-nks
+RUN go get github.com/yudai/gotty
 
 RUN cd $GOPATH/src/github.com/NetApp/terraform-provider-nks && \
     rm go.mod go.sum && make build && \
