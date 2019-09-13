@@ -58,8 +58,9 @@ if [[ "$ACTION" = 'build' || "$ACTION" = 'plan' || "$ACTION" = 'destroy' ]]; the
     else
     # Optionally override the entrypoint to boot into an interactive shell- useful for debugging
         docker run -ti \
+            -p 3000:3000 \
             -v $(pwd)/providers/$COMPONENT/$DEPLOY_ENV:/src/providers/$COMPONENT/$DEPLOY_ENV \
-            nks-tf:latest --$ACTION
+            nks-tf:latest
     fi
 else
     echo "ACTION: $ACTION is set to neither 'build', 'plan', or 'destroy'"
