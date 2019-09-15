@@ -59,6 +59,7 @@ if [[ "$ACTION" = 'build' || "$ACTION" = 'plan' || "$ACTION" = 'destroy' ]]; the
     # Optionally override the entrypoint to boot into an interactive shell- useful for debugging
         docker run -ti \
             -p 3000:3000 \
+            -e "XTERM=xterm-256color" \
             -v $(pwd)/providers/$COMPONENT/$DEPLOY_ENV:/src/providers/$COMPONENT/$DEPLOY_ENV \
             nks-tf:latest
     fi
