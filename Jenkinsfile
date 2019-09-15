@@ -10,7 +10,7 @@ node {
     stage('Build static image') {
       container('dind') {
           sh """
-            docker build -t netapp/hci-nks-demo:static-${gitCommit} -f static/Dockerfile static/
+            docker build -t sgryczan/hci-nks-demo:static-${gitCommit} -f static/Dockerfile static/
             """
       }
     }
@@ -18,7 +18,7 @@ node {
     stage('Build dynamic image') {
       container('dind') {
           sh """
-            docker build -t netapp/hci-nks-demo:dynamic-${gitCommit} -f dynamic/Dockerfile dynamic/
+            docker build -t sgryczan/hci-nks-demo:dynamic-${gitCommit} -f dynamic/Dockerfile dynamic/
             """
       }
     }
@@ -38,8 +38,8 @@ node {
           passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
           sh """
             docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
-            #docker push netapp/hci-nks-demo:static-${gitCommit}
-            #docker push netapp/hci-nks-demo:dynamic-${gitCommit}
+            #docker push sgryczan/hci-nks-demo:static-${gitCommit}
+            #docker push sgryczan/hci-nks-demo:dynamic-${gitCommit}
             """
         }
       }
