@@ -280,3 +280,13 @@ NAME     ID      SOURCE     URL                                # CHARTS
 demo     614                github.com/NetApp/hci-nks-demo     1
 bash-4.4$
 ```
+
+* Deploy our custom chart:
+
+```
+bash-4.4$ nks solutions deploy --name demo
+creating solution demo...
+NAME             ID        SOLUTION                  STATE     
+hci-nks-demo     47679     hci-nks-demo-repo-614     draft
+bash-4.4$
+```
