@@ -254,7 +254,7 @@ spec:
 * Under **build triggers**, select 'Poll SCM'
 * Under ***Pipeline**, select 'Pipeline script from SCM'
 * Set SCM to 'Git'
-* Set Repository URL to https://gitlab.com/sgryczan/nks-shell
+* Set Repository URL to https://github.com/NetApp/hci-nks-demo
 
 
 Trigger the pipeline. The pipeline will checkout the repository, build and push a docker image.
