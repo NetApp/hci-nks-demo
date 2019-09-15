@@ -7,10 +7,17 @@ node {
  
     
 
-    stage('Build image') {
+    stage('Build static image') {
       container('dind') {
           sh """
             docker build -t netapp/hci-nks-demo:static-${gitCommit} -f static/Dockerfile static/
+            """
+      }
+    }
+
+    stage('Build dynamic image') {
+      container('dind') {
+          sh """
             docker build -t netapp/hci-nks-demo:dynamic-${gitCommit} -f dynamic/Dockerfile dynamic/
             """
       }
