@@ -258,3 +258,25 @@ spec:
 
 
 Trigger the pipeline. The pipeline will checkout the repository, build and push a docker image.
+
+
+
+# Exercise 4 - Deploy a Custom Helm Chart
+
+1. In the NKS Shell, add a custom repository:
+
+```
+bash-4.4$ nks repositories create --name demo --url https://github.com/NetApp/hci-nks-demo/tree/master/k8s/hci-nks-demo
+NAME     ID      SOURCE     URL                                # CHARTS
+demo     614                github.com/NetApp/hci-nks-demo     0
+bash-4.4$
+```
+
+* View our added repo with `nks repositories list`:
+
+```
+bash-4.4$ nks repositories list
+NAME     ID      SOURCE     URL                                # CHARTS
+demo     614                github.com/NetApp/hci-nks-demo     1
+bash-4.4$
+```
