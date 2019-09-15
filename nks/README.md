@@ -204,7 +204,8 @@ bash-4.4$
 
 2. Add Credentials for Docker Hub
 
-* Credentials > Jenkins > Global Credentials > (Add credentials on left) 
+* Credentials > Jenkins > Global Credentials > (Add credentials on left)
+* Give the credentials an ID of 'Docker' 
 
 3. Configure agent containers
 
