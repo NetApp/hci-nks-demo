@@ -15,7 +15,7 @@ spec:
         app: dynamic
     spec:
       containers:
-      - image: gcr.io/nks-demo-242020/github.com/netapp/hci-nks-demo/dynamic:latest
+      - image: sgryczan/hci-nks-demo:dynamic-5e905d5f845820f45e41ddf5c37cdedda794a8f1
         imagePullPolicy: Always
         name: dynamic-demo
         ports:
