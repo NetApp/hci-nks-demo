@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bash
 
 set -e
 #set -x
@@ -51,7 +51,6 @@ if [[ "$ACTION" = 'build' || "$ACTION" = 'plan' || "$ACTION" = 'destroy' ]]; the
     if [[ "$DEBUG" = 'true' ]]; then 
         docker run -ti \
             -p 3000:3000 \
-            -v $(pwd)/providers/$COMPONENT/$DEPLOY_ENV:/src/providers/$COMPONENT/$DEPLOY_ENV \
             --entrypoint /bin/bash \
             nks-tf:latest
             # gotty -w -r -p 3000 --close-timeout 60 /bin/bash
@@ -60,7 +59,6 @@ if [[ "$ACTION" = 'build' || "$ACTION" = 'plan' || "$ACTION" = 'destroy' ]]; the
         docker run -ti \
             -p 3000:3000 \
             -e "XTERM=xterm-256color" \
-            -v $(pwd)/providers/$COMPONENT/$DEPLOY_ENV:/src/providers/$COMPONENT/$DEPLOY_ENV \
             nks-tf:latest
     fi
 else
