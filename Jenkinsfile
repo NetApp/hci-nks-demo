@@ -35,11 +35,11 @@ node {
     stage('Push image') {
       container('dind') {
         withCredentials([[$class: 'UsernamePasswordMultiBinding',
-          credentialsId: 'Docker',
-          usernameVariable: 'DOCKER_HUB_USER',
-          passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
+          credentialsId: 'Artifactory',
+          usernameVariable: 'ARTIFACTORY_USER',
+          passwordVariable: 'ARTIFACTORY_PASSWORD']]) {
           sh """
-            docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
+            docker login -u ${ARTIFACTORY_USER} -p ${ARTIFACTORY_PASSWORD} artifactory.netmnfl5bs.nks.cloud
             docker push artifactory.netmnfl5bs.nks.cloud/hci-nks-demo:static-${gitCommit}
             docker push artifactory.netmnfl5bs.nks.cloud/hci-nks-demo:static-latest
             docker push artifactory.netmnfl5bs.nks.cloud/hci-nks-demo:dynamic-${gitCommit}
