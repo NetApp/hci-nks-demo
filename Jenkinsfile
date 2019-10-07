@@ -10,7 +10,8 @@ node {
     stage('Build static image') {
       container('dind') {
           sh """
-            docker build -t sgryczan/hci-nks-demo:static-${gitCommit} -f static/Dockerfile static/
+            docker build -t artifactory.netmnfl5bs.nks.cloud/hci-nks-demo:static-${gitCommit} -f static/Dockerfile static/
+            docker tag artifactory.netmnfl5bs.nks.cloud/hci-nks-demo:static-${gitCommit} artifactory.netmnfl5bs.nks.cloud/hci-nks-demo:static-latest
             """
       }
     }
@@ -18,7 +19,8 @@ node {
     stage('Build dynamic image') {
       container('dind') {
           sh """
-            docker build -t sgryczan/hci-nks-demo:dynamic-${gitCommit} -f dynamic/Dockerfile dynamic/
+            docker build -t artifactory.netmnfl5bs.nks.cloud/hci-nks-demo:dynamic-${gitCommit} -f dynamic/Dockerfile dynamic/
+            docker tag artifactory.netmnfl5bs.nks.cloud/hci-nks-demo:dynamic-${gitCommit} artifactory.netmnfl5bs.nks.cloud/hci-nks-demo:dynamic-latest
             """
       }
     }
@@ -38,8 +40,10 @@ node {
           passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
           sh """
             docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
-            docker push sgryczan/hci-nks-demo:static-${gitCommit}
-            docker push sgryczan/hci-nks-demo:dynamic-${gitCommit}
+            docker push artifactory.netmnfl5bs.nks.cloud/hci-nks-demo:static-${gitCommit}
+            docker push artifactory.netmnfl5bs.nks.cloud/hci-nks-demo:static-latest
+            docker push artifactory.netmnfl5bs.nks.cloud/hci-nks-demo:dynamic-${gitCommit}
+            docker push artifactory.netmnfl5bs.nks.cloud/hci-nks-demo:dynamic-latest
             """
         }
       }
