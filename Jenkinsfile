@@ -5,8 +5,6 @@ node {
     def shortGitCommit = "${gitCommit[0..10]}"
     def previousGitCommit = sh(script: "git rev-parse ${gitCommit}~", returnStdout: true)
  
-    
-
     stage('Build static image') {
       container('dind') {
           sh """
