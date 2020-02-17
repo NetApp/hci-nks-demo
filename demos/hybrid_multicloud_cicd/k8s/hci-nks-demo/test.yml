@@ -1,0 +1,118 @@
+---
+# Source: hci-nks-demo/templates/dynamic_service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: dynamic-service
+  labels:
+    app: dynamic
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: dynamic
+  sessionAffinity: None
+  type: LoadBalancer
+
+---
+# Source: hci-nks-demo/templates/static_service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: static-service
+  labels:
+    app: static
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: static
+  sessionAffinity: None
+  type: LoadBalancer
+
+---
+# Source: hci-nks-demo/templates/tests/test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "release-name-hci-nks-demo-test-connection"
+  labels:
+    app.kubernetes.io/name: hci-nks-demo
+    helm.sh/chart: hci-nks-demo-0.1.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Tiller
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args:  ['release-name-hci-nks-demo:80']
+  restartPolicy: Never
+
+---
+# Source: hci-nks-demo/templates/dynamic_deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dynamic
+  labels:
+    app: dynamic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dynamic
+  template:
+    metadata:
+      labels:
+        app: dynamic
+    spec:
+      containers:
+      - image: gcr.io/nks-demo-242020/github.com/netapp/hci-nks-demo/dynamic:latest
+        imagePullPolicy: Always
+        name: dynamic-demo
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PRESENTER
+          value: Add your name
+        - name: ENVIRONMENT
+          value: Google Cloud Platform
+        - name: STATIC
+          value: http://34.83.30.56
+
+---
+# Source: hci-nks-demo/templates/static_deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static
+  labels:
+    app: static
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: static
+  template:
+    metadata:
+      labels:
+        app: static
+    spec:
+      containers:
+      - image: gcr.io/nks-demo-242020/github.com/netapp/hci-nks-demo/static:latest
+        name: static-demo
+        ports:
+        - containerPort: 80
+
+
