@@ -4,6 +4,9 @@ In this series of posts, we're covering various aspects of getting started with 
 
 In this post, we'll configure the Jenkins deployment that was deployed in part 2, build a pipeline, and run our first builds. For this example I'll be using a small demo application, the repository of which can be found [here](https://github.com/NetApp/hci-nks-demo/tree/master). This project contains 2 docker images, as well as a Jenkinsfile that will be used to run the pipeline.
 
+## Requirements
+Before proceeding, you'll need to have the `kubectl` command-line tool installed and configured to access your cluster. See [Install Kubectl to Control a Kubernetes Cluster](https://docs.netapp.com/us-en/kubernetes-service/install-kubectl-to-control-a-kubernetes-cluster.html) for details.
+
 
 ### Retrieving the Jenkins Password
 
