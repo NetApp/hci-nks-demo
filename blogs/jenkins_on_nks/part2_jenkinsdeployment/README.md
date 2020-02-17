@@ -75,13 +75,9 @@ Let's add the Helm-Stable repository to make Helm charts avaialble to deploy wit
 
 Now, we're ready to deploy Jenkins to our cluster. We do this by adding Jenkins as a solution into our newly-created project. 
 
-Select `Projects` on the left-hand column, select the `Jenkins` project we created earlier, and click `+ Add Solution` in the top right corner:
+* Select `Projects` on the left-hand column, select the `Jenkins` project we created earlier, and click `+ Add Solution` in the top right corner:
 
 ![](images/add_solution.png)
-
-### Deploy Jenkins
-
-Let's use NKS Solutions to deploy Jenkins onto our cluster. Click the `+ Add Solution` button to add a solution to the cluster.
 
 
 * Select the `Package` solution type, and click `Next`
@@ -126,7 +122,7 @@ Navigating back to the HCI vCenter console, open the *NetApp Element Management*
 
 ![](images/trident_volume.png)
 
-### Volume Mount
+### Verifying the Volume Mount
 
 This volume is mounted over iSCSI by the host running the target pod. We can confirm this fairly easily.
 
