@@ -2,7 +2,7 @@
 
 In this series of posts, we're covering various aspects of getting started with working with NKS on NetApp HCI. 
 
-In this post, we'll be covering how to deploy an application to a existing cluster, using the curated Helm charts offered by NKS. If you dont have a cluster up and running, see [part 1]() of this series where we cover deployment of an NKS cluster onto HCI.
+In this post, we'll be covering how to deploy an application to a existing cluster, using the curated Helm charts offered by NKS. If you dont have a cluster up and running, see [part 1](../part1_deployment/) of this series where we cover deployment of an NKS cluster onto HCI.
 
 ## Concept Overview
 
