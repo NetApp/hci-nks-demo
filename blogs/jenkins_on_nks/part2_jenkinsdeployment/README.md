@@ -1,8 +1,12 @@
-# NKS on HCI - Part 2
+# NKS on HCI - Part 2 - Deploying Jenkins
 
 In this series of posts, we're covering various aspects of getting started with working with NKS on NetApp HCI. 
 
 In this post, we'll be covering how to deploy an application to a existing cluster, using the curated Helm charts offered by NKS. If you dont have a cluster up and running, see [part 1](../part1_deployment/) of this series where we cover deployment of an NKS cluster onto HCI.
+
+### Requirements
+Make sure your [cluster ingress controller is configured](../../setup/metallb)
+
 
 ## Concept Overview
 
@@ -50,7 +54,7 @@ On the next page, we can review the details and settings for the project. If eve
 
 ### Import Helm Stable Chart Repository
 
-Let's add the Helm-Stable repository to make Helm charts avaialble to deploy with NKS.
+Let's add the Helm-Stable repository to make Helm charts available to deploy with NKS.
 
 * From the left-hand pane, select `My Charts`
     * ![](images/add_chart_1.png)

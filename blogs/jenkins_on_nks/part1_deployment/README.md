@@ -1,4 +1,4 @@
-# NKS on HCI
+# NKS on HCI - Cluster Deployment
 
 In this series of posts, we'll be covering how to get started with working with NKS on NetApp HCI. 
 

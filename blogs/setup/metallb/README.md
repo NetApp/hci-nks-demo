@@ -1,12 +1,12 @@
-# MetalLB Setup
+# MetalLB Configuration
 
-NKS is deployed with an nginx ingress controller by default. 
+NKS clusters are deployed with an nginx ingress controller by default. 
 
-Unfortunately, this ingress controller is deployed as a **LoadBalancer** service, so won't become functional until it gets a cluster-external IP address. 
+Unfortunately, this ingress controller is deployed as a **LoadBalancer** service, so on HCI-backed clusters, this won't become functional until it gets a cluster-external IP address. 
 
 This is evident by the Ingress service stuck in pending state:
 
-`kubectl get ingress -n ingress-nginx`
+`kubectl get service -n ingress-nginx`
 ```
 NAMESPACE         NAME              TYPE           CLUSTER-IP   EXTERNAL-IP
 ingress-nginx     ingress-nginx     LoadBalancer   10.3.0.46    <pending>

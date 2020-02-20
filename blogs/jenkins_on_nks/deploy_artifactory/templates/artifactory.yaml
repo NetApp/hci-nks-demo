@@ -1,0 +1,58 @@
+ingress:
+  enabled: true
+  hosts:
+    - artifactory.<YOUR_CLUSTER_ID>.nks.cloud
+  path: /
+  defaultBackend:
+    enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/proxy-body-size: "0"
+    ingress.kubernetes.io/proxy-read-timeout: "600"
+    ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^/(v2)/token /artifactory/api/docker/null/v2/token;
+      rewrite ^/v2/([^\/]*)/manifests/(.*) /artifactory/api/docker/$1/v2/docker/manifests/$2;
+      rewrite ^/v2/([^\/]*)/blobs/(.*) /artifactory/api/docker/$1/v2/docker/blobs/$2;
+  tls:
+    - secretName: wildcard-cert
+
+artifactory:
+  name: artifactory
+ 
+  ## Artifactory license.
+  license:
+    ## licenseKey is the license key in plain text. Make sure it is indented properly
+    licenseKey: |-
+      <---------------------------------------------------->
+      <---------------------------------------------------->
+      <---------------------------------------------------->
+      <---------------------------------------------------->
+      <---------------YOUR LICENSE KEY HERE --------------->
+      <---------------------------------------------------->
+      <---------------------------------------------------->
+      <---------------------------------------------------->
+      <---------------------------------------------------->
+      <---------------------------------------------------->
+
+  persistence:
+    mountPath: "/var/opt/jfrog/artifactory"
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 20Gi
+    storageClass: "solidfire-gold"
+    
+# Disable Nginx since we're using our own ingress controller
+nginx:
+  enabled: false
+
+## Configuration values for the PostgreSQL dependency sub-chart
+postgresql:
+  enabled: true
+  persistence:
+    enabled: true
+    size: 50Gi
+    storageClass: "solidfire-gold"
+
+serviceAccount:
+  create: true
